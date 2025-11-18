@@ -1,4 +1,4 @@
-\ProvidesPackage{sleekboxes}
+\ProvidesPackage{frameboxes}
 
 \RequirePackage{tcolorbox}
 \tcbuselibrary{theorems}
@@ -6,36 +6,8 @@
 \tcbuselibrary{skins,hooks} 
 \usepackage{xparse}
 
-%%%% colors %%%%
-\definecolor{DeepBlue}{HTML}{0B3C4D}
-\definecolor{DeepBlueLight}{HTML}{F3FBFC}
-
-\definecolor{DeepGreen}{HTML}{0B4D2E}
-\definecolor{DeepGreenLight}{HTML}{F3FCF6}
-
-\definecolor{DarkGrey}{HTML}{696868}
-\definecolor{GreyLight}{HTML}{F3F1F1}
-
-\definecolor{DeepRed}{HTML}{720026}
-\definecolor{DeepRedLight}{HTML}{FDF6F8}
-
-\definecolor{PinkPurple}{HTML}{8C1359}
-\definecolor{PinkPurpleLight}{HTML}{FDF5F9}
-
-\definecolor{RedPurple}{HTML}{6C1E63}
-\definecolor{RedPurpleLight}{HTML}{FDF8FB}
-
-\definecolor{DeepGrey}{HTML}{4E4A4A}
-\definecolor{DeepGreyLight}{HTML}{F6F5F5}
-
-\definecolor{BlueGray}{HTML}{36454F}
-\definecolor{BlueGrayLight}{HTML}{F4F7F9}
-
-\definecolor{DeepTeal}{HTML}{004D47}
-\definecolor{DeepTealLight}{HTML}{F2FAF9}
-
-\definecolor{BrightGreen}{HTML}{0E7C4B}
-\definecolor{BrightGreenLight}{HTML}{EFFBF6}
+% custom colors.sty package ! needed 4 colors !!
+\usepackage{colors}
 
 \newcounter{globaldefcounter} 
 
@@ -62,29 +34,29 @@
   thmpropstyle/.style={claimstyle={DeepGreenLight}{DeepGreen}} % they are both green
 }
 
-\newtcbtheorem[use counter=globaldefcounter]{defbox}{Def.} % custom counter to be safe
+\newtcbtheorem[use counter=globaldefcounter]{defframe}{Def.} % custom counter to be safe
 { % style
   claimstyle={RedPurpleLight}{RedPurple}
 }{def}
 
-\newtcbtheorem{lemmabox}{Lemma}{claimstyle={DeepBlueLight}{DeepBlue}}{lemma}
-\newtcbtheorem{thmbox}{Thm.}{thmpropstyle}{thm}
-\newtcbtheorem{propbox}{Prop.}{thmpropstyle}{prop}
+\newtcbtheorem{lemmaframe}{Lemma}{claimstyle={DeepBlueLight}{DeepBlue}}{lemma}
+\newtcbtheorem{thmframe}{Thm.}{thmpropstyle}{thm}
+\newtcbtheorem{propframe}{Prop.}{thmpropstyle}{prop}
 
 % title is "proof"
-\newtcolorbox{proofbox}[1][]{
+\newtcolorbox{proofframe}[1][]{
   boxstyle={DeepRedLight}{DeepRed}, 
   title=proof,
   #1
 }
 
-\newtcolorbox{pbox}[1][]{
+\newtcolorbox{pframe}[1][]{
   boxstyle={DeepRedLight}{DeepRed}, 
   notitle,
   #1
 }
 
-\newtcolorbox{gbox}[2][]{
+\newtcolorbox{gframe}[2][]{
   boxstyle={GreyLight}{DarkGrey}, 
   description font = \mdseries, 
   title=#2,
@@ -111,7 +83,7 @@
 
 % syntax is : \begin{cdefbox}{<bg color>}{<title/side color>}{<custom title>}
 
-\NewDocumentEnvironment{cdefbox}{mmm} 
+\NewDocumentEnvironment{cdefframe}{mmm} 
 {%
   \refstepcounter{globaldefcounter}
   \begin{tcolorbox}[mydynamicbox={#1}{#2}, title={Def.~\theglobaldefcounter: \textbf{#3}}]
@@ -120,7 +92,7 @@
   \end{tcolorbox}
 }
 
-\NewDocumentEnvironment{cbox}{mmm} % 3 args: bg color, title color, title
+\NewDocumentEnvironment{cframe}{mmm} % 3 args: bg color, title color, title
 {%
   \begin{tcolorbox}[
     mydynamicbox={#1}{#2},

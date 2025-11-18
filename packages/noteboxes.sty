@@ -1,0 +1,58 @@
+% based on https://xyquadrat.ch/blog/latex-boxes/
+\ProvidesPackage{noteboxes}
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+% custom colors.sty package !! needed 4 colors !!
+\usepackage{colors}
+
+\tcbset{
+  modernbase/.style={
+    arc=0mm,
+    bottomtitle=0.5mm,
+    boxrule=0mm,
+    coltitle=white,
+    fonttitle=\bfseries,
+    left=2.5mm,
+    right=3.5mm,
+    toptitle=0.75mm,
+    breakable,
+  },
+  mytheoremstyle/.style={
+    modernbase,
+    leftrule=1.7mm
+  }
+}
+
+\newtcbtheorem{defnote}{Def.}{mytheoremstyle,RedPurpleColors}{def}
+\newtcbtheorem{lemmanote}{Lemma}{mytheoremstyle,DeepBlueColors}{lem}
+\newtcbtheorem{thmnnote}{Thm.}{mytheoremstyle,DeepGreenColors}{thm}
+\newtcbtheorem{propnote}{Prop.}{mytheoremstyle,DeepGreenColors}{prop}
+
+\newtcolorbox{proofnote}[1][]{
+  modernbase,
+  leftrule=1.7mm,
+  \DeepRedColors,
+  title={Proof!},
+  #1
+}
+
+\newtcolorbox{gnote}[2][]{
+  modernbase,
+  leftrule=1.7mm,
+  DarkGreyColors,
+  title={#2},
+  #1
+}
+
+\newtcolorbox{pnote}[1][]{
+  modernbase,
+  leftrule=1.7mm,
+  colback=DeepRedLight,
+  colframe=DeepRed,
+  notitle,
+  #1
+}
+

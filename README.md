@@ -14,6 +14,25 @@ Boxes !!
 
 (tbd)
 
+`boxes.sty` provides pretty standard round boxes.
+(insert photos)
+Includes:
+(numbered boxes):
+- `defbox`
+
+- `lemmabox`
+
+
+- `thmbox`
+
+
+(non-numbered boxes):
+- `proofbox`
+
+
+- `gbox`
+
+
 ### useful macros
 
 ### title page

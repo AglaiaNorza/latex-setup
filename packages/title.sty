@@ -1,0 +1,67 @@
+\ProvidesPackage{title2}
+
+% variables
+\newcommand{\coursename}{}
+\newcommand{\coursebook}{}
+\newcommand{\authorname}{}
+\newcommand{\authoremail}{}
+\newcommand{\authorgithub}{}
+
+\newcommand{\titlecolor}{teal!60!black}
+
+% assigning values to variables (in my .tex, i do \setcoursename{} etc)
+\newcommand{\setcoursename}[1]{\renewcommand{\coursename}{#1}}
+\newcommand{\setcoursebook}[1]{\renewcommand{\coursebook}{#1}}
+\newcommand{\setauthorname}[1]{\renewcommand{\authorname}{#1}}
+\newcommand{\setauthoremail}[1]{\renewcommand{\authoremail}{#1}}
+\newcommand{\setauthorgithub}[1]{\renewcommand{\authorgithub}{#1}}
+
+\newcommand{\settitlecolor}[1]{\renewcommand{\titlecolor}{#1}}
+
+\RequirePackage{tikz}
+\RequirePackage{geometry}
+
+\usepackage{datetime}
+\newdateformat{ddmmyyyy}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+\geometry{a4paper, total={18cm,25.7cm}, hmarginratio=1:1, vmarginratio=1:1, bindingoffset=0cm}
+
+\renewcommand{\maketitle}{
+    \begin{titlepage}
+        \begin{tikzpicture}[remember picture, overlay]
+            % outer border
+            \draw[line width=20pt, color=\titlecolor] (current page.south west) rectangle (current page.north east);
+            % inner border, slightly offset
+            \draw[line width=8pt, color=gray!60] ([xshift=8mm,yshift=8mm]current page.south west) rectangle ([xshift=-8mm,yshift=-8mm]current page.north east);
+        \end{tikzpicture}
+
+        \begin{center}
+            \vspace*{2cm}
+            \Huge\textbf{\coursename}\par
+            \rule{0.6\textwidth}{0.5pt}\par % separator line
+            \vspace{0.2cm}
+            \normalsize Sapienza Università di Roma
+
+            \iflanguage{italian}{
+                    \textit{libro del corso: \coursebook}\par
+                }{
+                    \textit{course book: \coursebook}\par
+                }
+                \vspace{0.2cm}
+                \rule{0.5\textwidth}{0.3pt}\par % separator line
+                \vspace{0.2cm}
+                \authorname\par
+
+                \ddmmyyyy\today
+
+                \vfill
+
+                \rule{0.4\textwidth}{0.3pt}\par % separator line before contact info
+                \vspace{0.2cm}
+                \normalsize
+                \href{mailto:\authoremail}{\authoremail} \quad | \quad \href{https://github.com/\authorgithub}{github.com/\authorgithub}
+            \end{center}
+        \end{titlepage}
+    }
+
+    \endinput

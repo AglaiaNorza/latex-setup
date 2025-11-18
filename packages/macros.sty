@@ -1,0 +1,12 @@
+\ProvidesPackage{macros}
+
+\RequirePackage{mathtools}
+
+\renewcommand{\implies}{\;\Rightarrow\;}
+\renewcommand{\impliedby}{\;\Leftarrow\;}
+
+% better \textcircled
+\let\oldtextcircled\textcircled
+\renewcommand{\textcircled}[1]{%
+  \raisebox{0.4pt}{\oldtextcircled{\raisebox{-0.6pt}{#1}}}%
+}
