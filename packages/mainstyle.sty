@@ -1,0 +1,82 @@
+\ProvidesPackage{mainstyle}
+
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{geometry}
+\RequirePackage{hyperref}
+\RequirePackage{todonotes}
+\RequirePackage{bbold}
+\RequirePackage{listings}
+
+
+\usepackage{fontspec} 
+%\setmainfont{IBM Plex Sans} 
+\setmainfont{XITS} 
+
+%\usepackage{setspace}
+%\setstretch{1.05}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=2pt, topsep=2pt}
+\setlist[enumerate]{itemsep=2pt, topsep=2pt}
+
+\setenumerate{label=(\arabic*)}
+
+\DeclareMathSizes{11}{13}{9}{9}
+% margins
+\geometry{a4paper, margin=2.5cm}
+
+% fix for ugly ahh arrows
+\usepackage{mathtools}
+
+\renewcommand{\implies}{\;\Rightarrow\;}
+\renewcommand{\impliedby}{\;\Leftarrow\;}
+
+% better \textcircled
+
+\let\oldtextcircled\textcircled
+
+\renewcommand{\textcircled}[1]{%
+  \raisebox{0.4pt}{\oldtextcircled{\raisebox{-0.6pt}{#1}}}%
+}
+
+% titles
+\usepackage{titlesec}
+
+% chapter formatting
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter. }{0pt}{}
+% spacing: left, before, after
+\titlespacing*{\chapter}{0pt}{20pt}{15pt}
+
+% section formatting
+\titleformat{\section}[hang]{\Large\bfseries}{\thesection. }{0pt}{}
+\titlespacing*{\section}{0pt}{15pt}{8pt}
+
+\titleformat{\subsection}[hang]{\large\bfseries}{\thesubsection. }{0pt}{}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+
+% header and footer
+\RequirePackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[R]{\nouppercase{\rightmark}}
+
+\fancyfoot[L]{\nouppercase{\leftmark}}
+\fancyfoot[R]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\renewcommand{\chaptermark}[1]{%
+  \markboth{\thechapter\quad #1}{}%
+}
+
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\quad #1}%
+}
+
+\geometry{a4paper, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}

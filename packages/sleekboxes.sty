@@ -1,0 +1,134 @@
+\ProvidesPackage{sleekboxes}
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins,hooks} 
+\usepackage{xparse}
+
+%%%% colors %%%%
+\definecolor{DeepBlue}{HTML}{0B3C4D}
+\definecolor{DeepBlueLight}{HTML}{F3FBFC}
+
+\definecolor{DeepGreen}{HTML}{0B4D2E}
+\definecolor{DeepGreenLight}{HTML}{F3FCF6}
+
+\definecolor{DarkGrey}{HTML}{696868}
+\definecolor{GreyLight}{HTML}{F3F1F1}
+
+\definecolor{DeepRed}{HTML}{720026}
+\definecolor{DeepRedLight}{HTML}{FDF6F8}
+
+\definecolor{PinkPurple}{HTML}{8C1359}
+\definecolor{PinkPurpleLight}{HTML}{FDF5F9}
+
+\definecolor{RedPurple}{HTML}{6C1E63}
+\definecolor{RedPurpleLight}{HTML}{FDF8FB}
+
+\definecolor{DeepGrey}{HTML}{4E4A4A}
+\definecolor{DeepGreyLight}{HTML}{F6F5F5}
+
+\definecolor{BlueGray}{HTML}{36454F}
+\definecolor{BlueGrayLight}{HTML}{F4F7F9}
+
+\definecolor{DeepTeal}{HTML}{004D47}
+\definecolor{DeepTealLight}{HTML}{F2FAF9}
+
+\definecolor{BrightGreen}{HTML}{0E7C4B}
+\definecolor{BrightGreenLight}{HTML}{EFFBF6}
+
+\newcounter{globaldefcounter} 
+
+\tcbset{
+    % primary base style
+  boxstyle/.style n args={2}{ % #1=bg color, #2=title+border color
+    enhanced,
+    breakable,
+    colback = #1,
+    frame hidden,
+    boxrule = 0sp, % main frame is hidden
+    borderline west = {2pt}{0pt}{#2}, % left border, 2px
+    sharp corners, % square !
+    detach title,
+    before upper = \tcbtitle\par\smallskip, % title is inside box with small space
+    coltitle = #2,
+    fonttitle = {\sffamily\large}, % sans-serif
+    segmentation style={solid, #2},
+  },
+  claimstyle/.style n args={2}{
+    boxstyle={#1}{#2}, 
+    description font = \bfseries,
+  },
+  thmpropstyle/.style={claimstyle={DeepGreenLight}{DeepGreen}} % they are both green
+}
+
+\newtcbtheorem[use counter=globaldefcounter]{defbox}{Def.} % custom counter to be safe
+{ % style
+  claimstyle={RedPurpleLight}{RedPurple}
+}{def}
+
+\newtcbtheorem{lemmabox}{Lemma}{claimstyle={DeepBlueLight}{DeepBlue}}{lemma}
+\newtcbtheorem{thmbox}{Thm.}{thmpropstyle}{thm}
+\newtcbtheorem{propbox}{Prop.}{thmpropstyle}{prop}
+
+% title is "proof"
+\newtcolorbox{proofbox}[1][]{
+  boxstyle={DeepRedLight}{DeepRed}, 
+  title=proof,
+  #1
+}
+
+\newtcolorbox{pbox}[1][]{
+  boxstyle={DeepRedLight}{DeepRed}, 
+  notitle,
+  #1
+}
+
+\newtcolorbox{gbox}[2][]{
+  boxstyle={GreyLight}{DarkGrey}, 
+  description font = \mdseries, 
+  title=#2,
+  #1
+}
+
+\tcbset{
+  mydynamicbox/.style 2 args={ % #1 = bg color, #2 = title/side color
+    enhanced,
+    breakable,
+    colback=#1,
+    frame hidden,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{#2},
+    sharp corners,
+    detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=#2,
+    fonttitle={\sffamily\large},
+    separator sign none,
+    segmentation style={solid,#2},
+  }
+}
+
+% syntax is : \begin{cdefbox}{<bg color>}{<title/side color>}{<custom title>}
+
+\NewDocumentEnvironment{cdefbox}{mmm} 
+{%
+  \refstepcounter{globaldefcounter}
+  \begin{tcolorbox}[mydynamicbox={#1}{#2}, title={Def.~\theglobaldefcounter: \textbf{#3}}]
+}%
+{%
+  \end{tcolorbox}
+}
+
+\NewDocumentEnvironment{cbox}{mmm} % 3 args: bg color, title color, title
+{%
+  \begin{tcolorbox}[
+    mydynamicbox={#1}{#2},
+    title={#3},
+    fonttitle={\bfseries\sffamily\large} % make title bold
+  ]
+}%
+{%
+  \end{tcolorbox}
+}
+

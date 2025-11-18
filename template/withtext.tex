@@ -1,0 +1,64 @@
+%! TEX program = xelatex
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{./../packages/mainstyle}
+\usepackage{./../packages/boxes}
+\usepackage{./../packages/titleENG}
+
+\setcoursename{Very Interesting and Elaborate Course Name}
+\setcoursebook{“Extremely Cool and Deep Book” by Famous Author}
+\setauthorname{name surname}
+
+\begin{document}
+
+\makefrontpage
+
+\tableofcontents
+
+\chapter{Chapter}
+Yes these are notes they are so useful
+
+\section{Introduction}
+
+Yes indeed so true aha i agre yes yes\dots
+
+\subsection{furthermore}
+Mmmh terribly interesting indeed \( 5+5=10 \)
+
+\begin{defbox}{group}
+A \emph{group} is a set $G$ together with a binary operation 
+$\cdot : G \times G \to G$ such that:
+\begin{enumerate}
+  \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ forrr all $a,b,c \in G$ (associativity),
+  \item there exists an identity element $e \in G$ such that $e \cdot a = a \cdot e = a$ for all $a \in G$,
+  \item every $a \in G$ has an inverse $a^{-1}$ such that $a \cdot a^{-1} = a^{-1} \cdot a = e$.
+\end{enumerate}
+\end{defbox}
+
+\begin{lemmabox}{Uniqueness of the Identity}
+If $e$ and $e'$ are both identity elements in $G$, then $e = e'$.
+\end{lemmabox}
+
+\begin{theobox}{Cancellation Law}
+In a group $G$, if $a \cdot b = a \cdot c$, then $b = c$.
+\end{theobox}
+
+\begin{proofbox}
+Suppose $a \cdot b = a \cdot c$. 
+Multiply both sides on the left by $a^{-1}$:
+\[
+a^{-1} \cdot (a \cdot b) = a^{-1} \cdot (a \cdot c).
+\]
+By associativity,
+\[
+(a^{-1} \cdot a) \cdot b = (a^{-1} \cdot a) \cdot c.
+\]
+Since $a^{-1} \cdot a = e$ (the identity), we get $e \cdot b = e \cdot c$,
+which simplifies to $b = c$.
+\end{proofbox}
+
+\begin{gbox}{stuff}
+This is the stuff.
+\end{gbox}
+
+\end{document}

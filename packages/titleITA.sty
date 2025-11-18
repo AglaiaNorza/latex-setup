@@ -1,0 +1,68 @@
+\ProvidesPackage{titleITA}
+
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{geometry}
+
+\usepackage{datetime}
+\newdateformat{ddmmyyyy}{\twodigit{\THEDAY}/\twodigit{\THEMONTH}/\THEYEAR}
+
+% variables
+\newcommand{\coursename}{}
+\newcommand{\coursebook}{}
+\newcommand{\authorname}{}
+\newcommand{\authoremail}{}
+\newcommand{\authorgithub}{}
+
+\newcommand{\titlecolor}{gray!40}
+
+% assigning values to variables (in my .tex, i do \setcoursename{} etc)
+\newcommand{\setcoursename}[1]{\renewcommand{\coursename}{#1}}
+\newcommand{\setcoursebook}[1]{\renewcommand{\coursebook}{#1}}
+\newcommand{\setauthorname}[1]{\renewcommand{\authorname}{#1}}
+\newcommand{\setauthoremail}[1]{\renewcommand{\authoremail}{#1}}
+\newcommand{\setauthorgithub}[1]{\renewcommand{\authorgithub}{#1}}
+
+\newcommand{\settitlecolor}[1]{\renewcommand{\titlecolor}{#1}}
+
+% main page build
+\newcommand{\makefrontpage}{
+    \thispagestyle{empty}
+    \vspace*{0.25\textheight} % vertical centering 
+
+    % rectangle
+    \noindent
+    \begin{tikzpicture}
+        \node[fill=\titlecolor, inner sep=6pt, text width=0.9\textwidth] (titlebox)
+        {\centering\Huge\bfseries \coursename};
+        
+        % right-alligned author
+        \node[anchor=south east, yshift=1pt] at (titlebox.north east)
+        {\normalsize \authorname};
+    \end{tikzpicture}
+
+    % under the rectangle
+    \vspace{0.8em}
+    \begin{minipage}{0.9\textwidth}
+        \raggedright
+        appunti delle lezioni \\
+        libro del corso: \coursebook
+    \end{minipage}
+
+    \vfill
+    \noindent
+    \begin{minipage}{0.45\textwidth}
+        \raggedright
+        \ddmmyyyy\today
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \raggedleft
+        \href{mailto:\authoremail}{\authoremail} \\[0.3em]
+        \href{https://github.com/\authorgithub}{github.com/\authorgithub}
+    \end{minipage}
+
+
+    \clearpage
+}
+
