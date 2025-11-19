@@ -6,7 +6,7 @@ My personal LaTeX template for things like university notes, coupled with the ne
 
 The template is divided in `.sty` modules, each one with a specific purpose.
 
-The template is explained and shown in FILE.
+The template is shown [here](https://raw.githubusercontent.com/AglaiaNorza/latex-setup/main/template.pdf).
 
 --- 
 
