@@ -6,39 +6,7 @@ My personal, **LaTeX template** for university lecture notes, coupled with the *
 
 The template is divided in `.sty` modules, each one with a specific purpose.
 
-### `mainstyle.sty` - core style 
-
-### box styles (`tcolorbox` definitions)
-
-Boxes !!
-
-(tbd)
-
-`boxes.sty` provides pretty standard round boxes.
-(insert photos)
-Includes:
-(numbered boxes):
-- `defbox`
-
-- `lemmabox`
-
-
-- `thmbox`
-
-
-(non-numbered boxes):
-- `proofbox`
-
-
-- `gbox`
-
-
-### useful macros
-
-### title page
-
-
-## packages used
+The template is explained and shown in FILE.
 
 --- 
 
@@ -58,13 +26,11 @@ The snippets themselves are in `tex.lua` and were created by me. Many are inspir
 
 1.  Type a snippet trigger (e.g., `def` or `@a`).
 2.  The completion menu will appear. You can either:
-  - use `Tab` to jump through options and `Enter`/`Space` to expand.
-  - use `<C-j>` or `<C-Space>` to auto-expand the first option, without using `Tab`
+    - use `Tab` to jump through options and `Enter`/`Space` to expand.
+    - use `<C-j>` or `<C-Space>` to auto-expand the first option, without using `Tab`
 
 ---
 
 ## usage
-
-1.  Clone the repository into your preferred location.
-2.  **LaTeX:** Place the `*.sty` files into your document's directory or in a location where your LaTeX distribution can find them.
-3.  **Neovim:** Ensure the contents of the `*.lua` files are correctly integrated into your Neovim configuration structure (likely under a `lua/plugins/` or `lua/` directory, depending on your setup).
+1.  **LaTeX:** Place the `*.sty` files into your document's directory or in a location where your LaTeX distribution can find them.
+2.  **Neovim:** Ensure the contents of the `*.lua` files are correctly integrated into your Neovim configuration structure (likely under a `lua/plugins/` or `lua/` directory, depending on your setup).
