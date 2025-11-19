@@ -9,9 +9,10 @@ return {
         -- Load VSCode-style snippets
         require("luasnip.loaders.from_vscode").lazy_load()
 
+        --- RELEVANT:
         -- Load custom Lua snippets
         require("luasnip.loaders.from_lua").load({
-            -- PATH TO FOLDER THAT CONTAINS THE SNIPPET FILES
+            -- PATH TO FOLDER THAT CONTAINS THE SNIPPET FILES !!!!
             paths = vim.fn.expand("~/.config/nvim/lua/plugins/snippets"),
         })
 

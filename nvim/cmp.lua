@@ -1,3 +1,4 @@
+-- the config is the basic one, but i changed the keys to accept suggestions
 return {
     {
         'neovim/nvim-lspconfig',
@@ -35,6 +36,8 @@ return {
                     -- documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
+
+                    --  RELEVANT :
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     --['<C-Space>'] = cmp.mapping.complete(),
@@ -53,7 +56,7 @@ return {
                         end
                     end, { "i", "s" }),
 
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)Removed outdated sections and added a reference to the template file.
                         if cmp.visible() then
                             cmp.select_prev_item()
                         elseif require("luasnip").jumpable(-1) then
@@ -66,7 +69,7 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'vsnip' },
-                    { name = 'luasnip' },
+                    { name = 'luasnip' }, -- allows me to load custom snippets
                     -- { name = 'ultisnips' },
                     -- { name = 'snippy' },
                 }, {
