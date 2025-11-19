@@ -1,4 +1,4 @@
-My personal, **LaTeX template** for university lecture notes, coupled with the **neovim (nvim) configuration** that i use to write them, including custom snippets and autocompletion.
+My personal LaTeX template for things like university notes, coupled with the neovim (nvim) configuration that i use to write them, including custom snippets and autocompletion. It's still a work in progress, as i just started using LaTeX this year.
 
 ---
 
@@ -14,13 +14,15 @@ The template is explained and shown in FILE.
 
 This configuration uses the `nvim-cmp` and `LuaSnip` plugins to provide completion with snippets, in order to be able to write at a good speed.
 
-The snippets themselves are in `tex.lua` and were created by me. Many are inspired by the [latex-suite](https://github.com/artisticat1/obsidian-latex-suite) plugin for obsidian.
+The snippets themselves are in `tex.lua` and were created by me. Many are inspired by the [latex-suite](https://github.com/artisticat1/obsidian-latex-suite) plugin for obsidian. (I plan on adding more soon).
 
 | file | description | deets |
 | :--- | :--- | :--- |
 | **`luasnip.lua`** | configuration for the `LuaSnip` plugin. | lazy-loads (amongst others) my custom snippets. defines keybindings for expansion (`<C-l>`), jumping forward (`<C-k>`), and jumping backward (`<C-j>`). |
-| **`cmp.lua`** | configuration for the `nvim-cmp` autocompletion plugin. | Integrates `luasnip` with the completion engine via `cmp-luasnip`. Custom mapping for confirmation on `Enter` (`<CR>`) and **`Space`** or selection via **`<C-Space>`**. |
-| **`tex.lua`** | **custom LaTeX Snippets** (for use with `LuaSnip`). | Includes common environment snippets (`beg`, `def`, `note`, `proof`), math delimiters (`mk` for inline, `dm` for display), and **math symbols** (`@a` for `\alpha`, `->` for `\to`, `iff` for `\iff`). Also includes a dynamic regex snippet to auto-create fractions: **`.../` expands to `\frac{...}{}`**. |
+| **`cmp.lua`** | configuration for the `nvim-cmp` autocompletion plugin. | integrates `luasnip` with the completion engine via `cmp-luasnip`. Custom mapping for confirmation via `Enter` or `Space`, selection + confirmation via `<C-Space>`. |
+| **`tex.lua`** | custom LaTeX Snippets (for use with `LuaSnip`) written by me. | Includes common environment snippets (`beg`, `def`, `note`, `proof`), math delimiters (`mk` for inline, `dm` for display), and math symbols (`@a` for `\alpha`, `->` for `\to`, `sub=` for `\subseteq`) etc |
+
+the nvim plugins include the entire configs i use, of which some pieces are latex-specific.
 
 ### usage in nvim
 
@@ -32,5 +34,5 @@ The snippets themselves are in `tex.lua` and were created by me. Many are inspir
 ---
 
 ## usage
-1.  **LaTeX:** Place the `*.sty` files into your document's directory or in a location where your LaTeX distribution can find them.
-2.  **Neovim:** Ensure the contents of the `*.lua` files are correctly integrated into your Neovim configuration structure (likely under a `lua/plugins/` or `lua/` directory, depending on your setup).
+1.  **LaTeX:** Place the `*.sty` files into your document's directory or in a location where your LaTeX distribution can find them (and include them in your `.tex` files.
+2.  **Neovim:** integrate the `*.lua` files into your Neovim configuration structure (likely under a `lua/plugins/` or `lua/` directory, depending on your setup) (or feel free to just steal the snippets if you need them).
