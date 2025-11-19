@@ -1,5 +1,3 @@
--- snippets i use in my latex notes - i use these with "autocmp.nvim"
-
 -- luasnip.lua
 local ls = require "luasnip"
 local s = ls.snippet
@@ -47,6 +45,66 @@ ls.add_snippets("tex", {
 ls.add_snippets("tex", {
     s("def", fmt(
         [[
+        \begin{{defframe}}{{{}}}{{}}
+            {}
+        \end{{defframe}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("note", fmt(
+        [[
+        \begin{{gframe}}{{{}}}
+            {}
+        \end{{gframe}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("proof", fmt(
+        [[
+        \begin{{proofframe}}{{{}}}{{}}
+            {}
+        \end{{proofframe}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("thm", fmt(
+        [[
+        \begin{{thmframe}}{{{}}}{{}}
+            {}
+        \end{{thmframe}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("lemma", fmt(
+        [[
+        \begin{{lemmaframe}}{{{}}}{{}}
+            {}
+        \end{{lemmaframe}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("defbox", fmt(
+        [[
         \begin{{defbox}}{{{}}}{{}}
             {}
         \end{{defbox}}
@@ -57,7 +115,7 @@ ls.add_snippets("tex", {
 })
 
 ls.add_snippets("tex", {
-    s("note", fmt(
+    s("notebox", fmt(
         [[
         \begin{{gbox}}{{{}}}
             {}
@@ -69,7 +127,7 @@ ls.add_snippets("tex", {
 })
 
 ls.add_snippets("tex", {
-    s("proof", fmt(
+    s("proofbox", fmt(
         [[
         \begin{{proofbox}}{{{}}}{{}}
             {}
@@ -81,7 +139,7 @@ ls.add_snippets("tex", {
 })
 
 ls.add_snippets("tex", {
-    s("thm", fmt(
+    s("thmbox", fmt(
         [[
         \begin{{thmbox}}{{{}}}{{}}
             {}
@@ -93,7 +151,7 @@ ls.add_snippets("tex", {
 })
 
 ls.add_snippets("tex", {
-    s("lemma", fmt(
+    s("lemmabox", fmt(
         [[
         \begin{{lemmabox}}{{{}}}{{}}
             {}
@@ -103,6 +161,68 @@ ls.add_snippets("tex", {
             i(0)
         }))
 })
+
+ls.add_snippets("tex", {
+    s("defnote", fmt(
+        [[
+        \begin{{defnote}}{{{}}}{{}}
+            {}
+        \end{{defnote}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("gnote", fmt(
+        [[
+        \begin{{gnote}}{{{}}}
+            {}
+        \end{{gnote}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("proofnote", fmt(
+        [[
+        \begin{{proofnote}}{{{}}}{{}}
+            {}
+        \end{{proofnote}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("thmnote", fmt(
+        [[
+        \begin{{thmnote}}{{{}}}{{}}
+            {}
+        \end{{thmnote}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+ls.add_snippets("tex", {
+    s("lemmanote", fmt(
+        [[
+        \begin{{lemmanote}}{{{}}}{{}}
+            {}
+        \end{{lemmanote}}
+        ]], {
+            i(1),
+            i(0)
+        }))
+})
+
+
 
 ls.add_snippets("tex", {
     s("mk", {t("\\( "), i(1), t(" \\)")}),

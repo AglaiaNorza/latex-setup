@@ -16,6 +16,7 @@
   boxstyle/.style n args={2}{ % #1=bg color, #2=title+border color
     enhanced,
     breakable,
+    parbox=false,
     colback = #1,
     frame hidden,
     boxrule = 0sp, % main frame is hidden
@@ -67,6 +68,7 @@
   mydynamicbox/.style 2 args={ % #1 = bg color, #2 = title/side color
     enhanced,
     breakable,
+    parbox=false,
     colback=#1,
     frame hidden,
     boxrule=0pt,

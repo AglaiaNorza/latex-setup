@@ -2,11 +2,15 @@
 
 \RequirePackage{mathtools}
 
-\renewcommand{\implies}{\;\Rightarrow\;}
-\renewcommand{\impliedby}{\;\Leftarrow\;}
-
 % better \textcircled
 \let\oldtextcircled\textcircled
 \renewcommand{\textcircled}[1]{%
   \raisebox{0.4pt}{\oldtextcircled{\raisebox{-0.6pt}{#1}}}%
 }
+
+\newcommand{\xor}{\oplus}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
