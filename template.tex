@@ -1,15 +1,16 @@
 %! TEX program = xelatex
 \documentclass[a4paper,12pt]{report}
 
-\usepackage{./../packages/mainstyle}
-\usepackage{./../packages/colors}
-\usepackage{./../packages/title}
-\usepackage{./../packages/packs}
-\usepackage{./../packages/macros}
+\usepackage{packages/mainstyle}
+\usepackage{packages/colors}
+\usepackage{packages/title}
+\usepackage{packages/packs}
+\usepackage{packages/macros}
+\usepackage{packages/title}
 
-\usepackage{./../packages/frameboxes}
-\usepackage{./../packages/noteboxes}
-\usepackage{./../packages/roundboxes}
+\usepackage{packages/frameboxes}
+\usepackage{packages/noteboxes}
+\usepackage{packages/roundboxes}
 
 \setcoursename{Course Name}
 \setcoursebook{Book Title, \textit{Author Name}}
@@ -68,6 +69,10 @@ Pretty basic:
 \section{Package dependencies (\texttt{packs.sty})}
 
 The \texttt{packs.sty} file includes the packages i use in my notes (mainly maths and formatting packages).
+
+\section{Title page (\texttt{title.sty})}
+Title page is always a work in progress. Right now, it's generic, but i'm still looking for a better one.
+(the current one is on the last page of this pdf)
 
 \chapter{Boxes}
 
@@ -242,6 +247,6 @@ The boxes defined in \texttt{noteboxes.sty} are:
 
 
 
-
+\maketitle
 
 \end{document}
