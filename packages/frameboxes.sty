@@ -10,6 +10,7 @@
 \usepackage{colors}
 
 \newcounter{globaldefcounter} 
+\newcounter{thmcounter} 
 
 \tcbset{
     % primary base style
@@ -41,7 +42,7 @@
 }{def}
 
 \newtcbtheorem{lemmaframe}{Lemma}{claimstyle={DeepBlueLight}{DeepBlue}}{lemma}
-\newtcbtheorem{thmframe}{Thm.}{thmpropstyle}{thm}
+\newtcbtheorem[use counter=thmcounter]{thmframe}{Thm.}{thmpropstyle}{thm}
 \newtcbtheorem{propframe}{Prop.}{thmpropstyle}{prop}
 
 % title is "proof"
@@ -63,6 +64,8 @@
   title=#2,
   #1
 }
+
+
 
 \tcbset{
   mydynamicbox/.style 2 args={ % #1 = bg color, #2 = title/side color
@@ -106,3 +109,12 @@
   \end{tcolorbox}
 }
 
+\NewDocumentEnvironment{corframe}{m} 
+{%
+  \begin{tcolorbox}[mydynamicbox={DeepGreenLight}{DeepGreen}, 
+    title={Corollary for Thm.~\thethmcounter: \textbf{#1}}, 
+    fonttitle={\bfseries\sffamily\large}]%
+}%
+{%
+  \end{tcolorbox}%
+}
