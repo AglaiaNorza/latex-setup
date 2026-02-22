@@ -44,7 +44,7 @@
 
 %\usepackage{titlesec}
 
-%\setcounter{secnumdepth}{3} % subsections, too
+\setcounter{secnumdepth}{3} % subsections, too
 
 %\titleformat{\section}[hang]{\Large\bfseries}{\thesection. }{0pt}{}
 %\titlespacing*{\section}{0pt}{15pt}{-15pt}
@@ -71,7 +71,7 @@
 \titleformat{\subsection}
   {\normalfont\large\bfseries\sffamily}
   {\thesubsection}
-  {1em}
+  {0.5em}
   {}
 
 \titlespacing*{\subsection}{0pt}{10pt}{8pt}
@@ -79,8 +79,10 @@
 \titleformat{\subsubsection}
   {\normalfont\normalsize\bfseries\sffamily}
   {\thesubsubsection}
-  {1em}
+  {0.5em}
   {}
+
+\titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
 
 % ===================================
 % header and footer 
