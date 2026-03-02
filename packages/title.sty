@@ -5,6 +5,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{fontawesome5}
 \RequirePackage{xcolor}
+\RequirePackage{tikz}
 
 \def\@universityname{Sapienza Università di Roma}
 \def\@coursename{Course Title}
@@ -36,11 +37,16 @@
         {\Large\itshape libro del corso: \\ \@coursebook \par}
         \vspace{2.5cm}
 
-        % checks if a photo was provided - if empty, draws a placeholder.
         \ifx\@coverphoto\empty
             \rule{0.65\textwidth}{0.35\textwidth} \par
         \else
-            \includegraphics[width=0.65\textwidth]{\@coverphoto} \par
+            \begin{tikzpicture}
+                \clip (0,0) rectangle (0.65\textwidth, 0.35\textwidth);
+                
+                \node[anchor=center, inner sep=0pt] at (0.325\textwidth, 0.175\textwidth) {
+                    \includegraphics[width=0.65\textwidth]{\@coverphoto}
+                };
+            \end{tikzpicture} \par
         \fi
         \vspace{2.5cm}
 
