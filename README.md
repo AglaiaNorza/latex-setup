@@ -27,7 +27,8 @@ the nvim plugins include the entire configs i use, of which some pieces are late
 ### usage in nvim
 
 1.  Type a snippet trigger (e.g., `def` or `@a`).
-2.  The completion menu will appear. You can either:
+2.  If the snippet is an "autosnippet" (e.g. "mk" for `$$` or "->" or "<="), it will automatically write the corresponding command
+3.  If it's not an autosnippet, the completion menu will appear. You can either:
     - use `Tab` to jump through options and `Enter`/`Space` to expand.
     - use `<C-j>` or `<C-Space>` to auto-expand the first option, without using `Tab`
 
