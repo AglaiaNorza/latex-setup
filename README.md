@@ -19,8 +19,8 @@ The snippets themselves are in `tex.lua` and were created by me. Many are inspir
 | file | description | deets |
 | :--- | :--- | :--- |
 | **`luasnip.lua`** | configuration for the `LuaSnip` plugin. | lazy-loads (amongst others) my custom snippets. defines keybindings for expansion (`<C-l>`), jumping forward (`<C-k>`), and jumping backward (`<C-j>`). |
-| **`cmp.lua`** | configuration for the `nvim-cmp` autocompletion plugin. | integrates `luasnip` with the completion engine via `cmp-luasnip`. Custom mapping for confirmation via `Enter` or `Space`, selection + confirmation via `<C-Space>`. |
-| **`tex.lua`** | custom LaTeX Snippets (for use with `LuaSnip`) written by me. | Includes common environment snippets (`beg`, `def`, `note`, `proof`), math delimiters (`mk` for inline, `dm` for display), and math symbols (`@a` for `\alpha`, `->` for `\to`, `sub=` for `\subseteq`) etc |
+| **`cmp.lua`** | configuration for the `nvim-cmp` autocompletion plugin. | integrates `luasnip` with the completion engine via `cmp-luasnip`; uses both autosnippet and custom mapping for confirmation via `Enter` or `Space`, selection + confirmation via `<C-Space>`. |
+| **`tex.lua`** | custom LaTeX Snippets (for use with `LuaSnip`) - some written by me, some inspired by [obsidian latex suite](https://github.com/artisticat1/obsidian-latex-suite)| includes environment snippets for both common environments and my custom boxes (`beg`, `def`, `note`, `proof`, `cases`),  math delimiters (`mk` for inline, `dm` for display), math symbols (`@a` for `\alpha`, `->` for `\to`, `sub=` for `\subseteq`), greek letters etc |
 
 the nvim plugins include the entire configs i use, of which some pieces are latex-specific.
 
