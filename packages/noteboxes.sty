@@ -1,12 +1,9 @@
 % based on https://xyquadrat.ch/blog/latex-boxes/
 \ProvidesPackage{noteboxes}
 
-\RequirePackage{tcolorbox}
-\tcbuselibrary{theorems}
-\tcbuselibrary{breakable}
-
-% custom colors.sty package !! needed 4 colors !!
 \usepackage{colors}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems, breakable}
 
 \tcbset{
   modernbase/.style={
@@ -20,40 +17,32 @@
     toptitle=0.75mm,
     breakable,
     parbox=false,
-  },
-  mytheoremstyle/.style={
-    modernbase,
-    leftrule=1.7mm
+    leftrule=1.7mm,
+    colframe=#1,
+    colback=#1!5!white,
+    colbacktitle=#1
   }
 }
 
-\newtcbtheorem{defnote}{Def.}{mytheoremstyle,RedPurpleColors}{def}
-\newtcbtheorem{lemmanote}{Lemma}{mytheoremstyle,DeepBlueColors}{lem}
-\newtcbtheorem{thmnnote}{Thm.}{mytheoremstyle,DeepGreenColors}{thm}
-\newtcbtheorem{propnote}{Prop.}{mytheoremstyle,DeepGreenColors}{prop}
+\newtcbtheorem{defnote}{Def.}{modernbase=ColorDef}{def}
+\newtcbtheorem{lemmanote}{Lemma}{modernbase=ColorLemma}{lem}
+\newtcbtheorem{thmnnote}{Thm.}{modernbase=ColorThm}{thm}
+\newtcbtheorem{propnote}{Prop.}{modernbase=ColorThm}{prop}
 
 \newtcolorbox{proofnote}[1][]{
-  modernbase,
-  leftrule=1.7mm,
-  DeepRedColors,
+  modernbase=ColorProof,
   title={Proof!},
   #1
 }
 
 \newtcolorbox{gnote}[2][]{
-  modernbase,
-  leftrule=1.7mm,
-  DarkGreyColors,
+  modernbase=ColorGen,
   title={#2},
   #1
 }
 
 \newtcolorbox{pnote}[1][]{
-  modernbase,
-  leftrule=1.7mm,
-  colback=DeepRedLight,
-  colframe=DeepRed,
+  modernbase=ColorProof,
   notitle,
   #1
 }
-

@@ -1,65 +1,32 @@
 \ProvidesPackage{roundboxes}
 
-\RequirePackage{tcolorbox}
-\tcbuselibrary{theorems} % automatic numbering
-\tcbuselibrary{breakable} 
-
-% custom colors.sty package !! needed 4 colors !!
 \usepackage{colors}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems, breakable} 
 
-% numbers are global (not within chapter)
-
-%%%% boxes %%%%
 \tcbset{
     myboxstyle/.style={
         fonttitle=\bfseries,
         parbox=false,
         breakable,
-    },
-    theme/definition/.style={
-        RedPurpleColors
-    },
-    theme/lemma/.style={
-        DeepBlueColors
-    },
-    theme/theorem/.style={
-        DeepGreenColors
-    },
-    theme/proof/.style={
-        DeepRedColors
-    },
-    theme/generic/.style={
-        DarkGreyColors
+        colback=#1!5!white,
+        colframe=#1,
+        colbacktitle=#1
     }
 }
 
-\newtcbtheorem{defbox}{Def.}{
-    myboxstyle,
-    theme/definition
-}{def}
+\newtcbtheorem{defbox}{Def.}{myboxstyle=ColorDef}{def}
+\newtcbtheorem{lemmabox}{Lemma}{myboxstyle=ColorLemma}{lem}
+\newtcbtheorem{thmbox}{Thm.}{myboxstyle=ColorThm}{thm}
 
-\newtcbtheorem{lemmabox}{Lemma}{
-    myboxstyle,
-    theme/lemma
-}{lem}
-
-\newtcbtheorem{thmbox}{Thm.}{
-    myboxstyle,
-    theme/theorem
-}{thm}
-
-% title can be added - if not present, it's "Proof"
 \newtcolorbox{proofbox}[1][]{
-    myboxstyle,
-    theme/proof,
+    myboxstyle=ColorProof,
     title=Proof,
     #1
 }
 
 \newtcolorbox{gbox}[2][]{
-    myboxstyle,
-    theme/generic,
-    title={#2}, % #2 is the title of the box
-    #1 % #1 allows overriding options
-    % like this: \begin{gbox}[<extra options>]{<title>}
+    myboxstyle=ColorGen,
+    title={#2}, 
+    #1 
 }

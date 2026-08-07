@@ -39,36 +39,34 @@ I use A4 paper with the XITS font. Left and Right margins are 2cm, top and botto
 \end{itemize}
 
 \section{Custom colors (\texttt{colors.sty})}
-Defines a palette of colors and sets up reusable styles for \texttt{tcolorbox} environments using the \texttt{theorems} library.
+``Semantic'' palette of colors (named by their purpose). The box packages automatically mix these primary colors with white to generate the lighter backgrounds.
 
-Five specific color styles are pre-defined using \texttt{\textbackslash tcbset} for use with theorem-like environments:
+The core semantic colors defined are:
 \begin{itemize}
-    \item \texttt{RedPurpleColors}
-    \item \texttt{DeepBlueColors}
-    \item \texttt{DeepGreenColors}
-    \item \texttt{DarkGreyColors}
-    \item \texttt{DeepRedColors}
+    \item \texttt{ColorDef}: used for definitions (Purple).
+    \item \texttt{ColorLemma}: used for lemmas (Blue).
+    \item \texttt{ColorThm}: used for theorems and propositions (Green).
+    \item \texttt{ColorProof}: used for proofs (Red).
+    \item \texttt{ColorGen}: used for generic boxes and text (Grey).
+    \item \texttt{ColorCor}: used for corollaries (Bright Green).
 \end{itemize}
-Each style sets the box background color (\texttt{colback}), frame color (\texttt{colframe}), and title background color (\texttt{colbacktitle}).
-
+Additional colors include \texttt{ColorEx} (examples), \texttt{ColorNote} (remarks), \texttt{ColorWarn} (warnings), and \texttt{ColorQues} (questions/exercises).
 
 \section{Custom macros (\texttt{macros.sty})}
 
-This package defines convenient commands for specific symbols and mathematical sets. There aren't very many, as i am still defining which ones i need (and most of the heavy lifting is done by my nvim config).
+This package defines commands for specific symbols and mathematical sets. There aren't very many, as i am still defining which ones i need (and most of the heavy lifting is done by my nvim config).
 
 Pretty basic:
 \begin{itemize}
     \item \texttt{\textbackslash xor}: XOR symbol ($\oplus$).
     \item \texttt{\textbackslash textcircled}: improved version that provides better vertical alignment for single characters
-    \item \texttt{\textbackslash N}: $\mathbb{N}$ (Natural Numbers)
-    \item \texttt{\textbackslash R}: $\mathbb{R}$ (Real Numbers)
-    \item \texttt{\textbackslash Q}: $\mathbb{Q}$ (Rational Numbers)
-    \item \texttt{\textbackslash Z}: $\mathbb{Z}$ (Integers)
+    \item \texttt{\textbackslash N}, \texttt{\textbackslash R}, \texttt{\textbackslash Q}, \texttt{\textbackslash Z}: Standard sets ($\mathbb{N}$, $\mathbb{R}$, $\mathbb{Q}$, $\mathbb{Z}$).
+    \item \texttt{\textbackslash mc\{X\}}: wrapper for \texttt{\textbackslash mathcal\{X\}}, + \texttt{\textbackslash Aa,\textbackslash Bb etc} for \texttt{mathcal{A}} etc  
 \end{itemize}
 
 \section{Package dependencies (\texttt{packs.sty})}
 
-The \texttt{packs.sty} file includes the packages i use in my notes (mainly maths and formatting packages).
+The \texttt{packs.sty} file includes the core packages i use in my notes (mainly maths and formatting packages).
 
 \section{Title page (\texttt{title.sty})}
 Title page is always a work in progress. Right now, it's generic, but i'm still looking for a better one.
@@ -76,7 +74,7 @@ Title page is always a work in progress. Right now, it's generic, but i'm still 
 
 \chapter{Boxes}
 
-All of the boxes in my template are very similar (the designs are different, but the box types are the same). That is because they are iterations of me deciding which style i like best. Right now, I only use ``frame boxes'', but at different points i used both ``round'' and ``note'' boxes, too
+All of the boxes in my template are very similar (the designs are different, but the box types are the same). That is because they are iterations of me deciding which style i like best. Right now, I only use ``frame boxes'', but at different points i used both ``round'' and ``note'' boxes, too.
 
 
 \section{Frame Boxes}
@@ -90,23 +88,23 @@ The boxes defined in \texttt{frameboxes.sty} are:
         \end{defframe}
 
     \item \texttt{cdefframe}
-        \begin{cdefframe}{DeepBlueLight}{DeepBlue}{Title}{}
-            This definition takes in colors in input. Its counter is shared with \texttt{defframe}.
+        \begin{cdefframe}{ColorDef}{Title}
+            This definition allows you to pass a specific semantic color as input. Its counter is shared with \texttt{defframe}.
 
-            The syntax is: \texttt{\textbackslash begin\{cdefframe\}\{bg color\}\{title/side color\}\{title\}}
+            The syntax is: \texttt{\textbackslash begin\{cdefframe\}\{ColorName\}\{title\}}
         \end{cdefframe}
 
     \item \texttt{cframe}
-               \begin{cframe}{BlueGrayLight}{DeepRed}{Custom Title}
-                   This is a custom-colored frame. Colors are given in input like with \texttt{cdefframe}, but there is no numbering or ``Def.''
+        \begin{cframe}{ColorEx}{Custom Title}
+            This is a custom-colored frame. A color is passed as input like with \texttt{cdefframe}, but without any numbering or ``Def.''
+            
+            The syntax is: \texttt{\textbackslash begin\{cframe\}\{ColorName\}\{title\}}
         \end{cframe}
 
     \item \texttt{lemmaframe}
 
         \begin{lemmaframe}{The Fundamental Lemma}{label:fund-lemma}
-
-            Is blue, includes ``Lemma <counter>'' (counter is separate from the definitions').
-
+            Is blue, includes ``Lemma <counter>''.
         \end{lemmaframe}
 
     \item \texttt{thmframe}
@@ -118,7 +116,7 @@ The boxes defined in \texttt{frameboxes.sty} are:
 
     \item \texttt{corframe}
         \begin{corframe}{Pythagoras Something}
-            Corollary ! Automatically referencing the last theorem created !
+            Corollary! Automatically references the last theorem created and uses \texttt{ColorCor}.
             
             Syntax is simply: \texttt{\textbackslash begin\{corframe\}\{title\}}
         \end{corframe}
@@ -138,12 +136,12 @@ The boxes defined in \texttt{frameboxes.sty} are:
         \begin{pframe}[title=Title Example]
             But it takes in one input that can be used to override the \texttt{notitle} option like so:
 
-            \texttt{\\begin\{pframe\}[title=Title Example]}
+            \texttt{\textbackslash begin\{pframe\}[title=Title Example]}
         \end{pframe}
 
     \item \texttt{gframe}
         \begin{gframe}{With title}
-            General-purpose gray note.
+            General-purpose gray note. Uses the \texttt{ColorGen} base.
         \end{gframe}
 
         \begin{gframe}{}
@@ -152,28 +150,36 @@ The boxes defined in \texttt{frameboxes.sty} are:
 
 \end{itemize}
 
+The \texttt{framed} \texttt{shaded} environment is also redefined via tcb (in light gray):
+\begin{shaded}
+    Usage: \texttt{\textbackslash begin\{shaded\}[text]\textbackslash end\{shaded\}}
+\end{shaded}
+
+and also in an inline version \shade{\texttt{\textbackslash shade\{[text]\}}}
+
+
 \section{Round Boxes}
 The boxes defined in \texttt{roundboxes.sty} are:
 
 \begin{itemize}
     \item \texttt{defbox}
         \begin{defbox}{Title}{label:optional-label}
-            This is a definition box. Title is preceded by ``Def. <counter>''. Uses the \texttt{RedPurpleColors} theme.
+            This is a definition box. Title is preceded by ``Def. <counter>''. Uses the \texttt{ColorDef} base.
         \end{defbox}
 
     \item \texttt{lemmabox}
         \begin{lemmabox}{The Fundamental Lemma}{label:fund-lemma}
-            Is blue, includes ``Lemma <counter>''. It uses the \texttt{DeepBlueColors} theme.
+            Is blue, includes ``Lemma <counter>''. It uses the \texttt{ColorLemma} base.
         \end{lemmabox}
 
     \item \texttt{thmbox}
         \begin{thmbox}{Pythagorean Theorem}{label:pythag}
-            Just like \texttt{lemmabox}, but green and includes ``Thm. <counter>''. Uses \texttt{DeepGreenColors} theme.
+            Just like \texttt{lemmabox}, but green and includes ``Thm. <counter>''. Uses the \texttt{ColorThm} base.
         \end{thmbox}
 
     \item \texttt{proofbox}
         \begin{proofbox}
-            Can be used without options. Has a fixed default title: ``Proof''. Uses the \texttt{DeepRedColors} theme.
+            Can be used without options. Has a fixed default title: ``Proof''. Uses the \texttt{ColorProof} base.
         \end{proofbox}
 
         \begin{proofbox}[title=Alternative Title]
@@ -184,7 +190,7 @@ The boxes defined in \texttt{roundboxes.sty} are:
 
     \item \texttt{gbox}
         \begin{gbox}{With title}
-            General-purpose gray note. It uses the \texttt{DarkGreyColors} theme.
+            General-purpose gray note. It uses the \texttt{ColorGen} base.
 
             Syntax: \texttt{\textbackslash begin\{gbox\}[optional-args]\{title\}}
         \end{gbox}
@@ -202,28 +208,28 @@ The boxes defined in \texttt{noteboxes.sty} are:
 \begin{itemize}
     \item \texttt{defnote}
         \begin{defnote}{Title}{label:optional-label}
-            This is a definition. It uses the \texttt{RedPurpleColors} theme.
+            This is a definition. It uses the \texttt{ColorDef} base.
         \end{defnote}
 
     \item \texttt{lemmanote}
         \begin{lemmanote}{The Fundamental Lemma}{label:fund-lemma}
-            Is blue, includes ``Lemma''. It uses the \texttt{DeepBlueColors} theme.
+            Is blue, includes ``Lemma''. It uses the \texttt{ColorLemma} base.
         \end{lemmanote}
 
     \item \texttt{thmnnote}
         \begin{thmnnote}{Pythagorean Theorem}{label:pythag}
-            Just like \texttt{lemmanote}, but green and with a different counter. It uses the \texttt{DeepGreenColors} theme.
+            Just like \texttt{lemmanote}, but green and with a different counter. It uses the \texttt{ColorThm} base.
         \end{thmnnote}
 
     \item \texttt{propnote}
         \begin{propnote}{Commutativity}{label:commute}
-            Just like \texttt{thmnnote}, but with a different counter. It uses the \texttt{DeepGreenColors} theme.
+            Just like \texttt{thmnnote}, but with a different counter. It uses the \texttt{ColorThm} base.
         \end{propnote}
 
     \item \texttt{proofnote}
 
         \begin{proofnote}
-            Can be used without options, or with an option to override style (like title). Otherwise has a fixed title: ``Proof!''. Uses the \texttt{DeepRedColors} theme
+            Can be used without options, or with an option to override style (like title). Otherwise has a fixed title: ``Proof!''. Uses the \texttt{ColorProof} base.
         \end{proofnote}
 
         \begin{proofnote}[title=Title Example]
@@ -234,7 +240,7 @@ The boxes defined in \texttt{noteboxes.sty} are:
 
     \item \texttt{gnote}
         \begin{gnote}{With title}
-            General-purpose gray note. It uses the \texttt{DarkGreyColors} theme.
+            General-purpose gray note. It uses the \texttt{ColorGen} base.
 
             Syntax: \texttt{\textbackslash begin\{gnote\}[optional-args]\{title\}}
         \end{gnote}
@@ -245,15 +251,13 @@ The boxes defined in \texttt{noteboxes.sty} are:
 
     \item \texttt{pnote}
         \begin{pnote}
-            A simple, red-colored box without a title by default. Uses \texttt{colback=DeepRedLight} and \texttt{colframe=DeepRed}.
+            A simple, red-colored box without a title by default. Uses the \texttt{ColorProof} base.
         \end{pnote}
 
         \begin{pnote}[title=Title Example]
             It takes one optional argument, which can be used to set a title via \texttt{[title=Title Example]}
         \end{pnote}
 \end{itemize}
-
-
 
 \makecustomcover
 
