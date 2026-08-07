@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{title}
+
+% --- required Packages ---
+\RequirePackage{graphicx}
+\RequirePackage{fontawesome5}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+
+\def\@universityname{Sapienza Università di Roma}
+\def\@coursename{Course Title}
+\def\@coursebook{Course Material}
+\def\@authorname{Author Name}
+\def\@authoremail{email@example.com}
+\def\@authorgithub{username}
+\def\@coverphoto{} % empty by default
+
+\newcommand{\setuniversity}[1]{\def\@universityname{#1}}
+\newcommand{\setcoursename}[1]{\def\@coursename{#1}}
+\newcommand{\setcoursebook}[1]{\def\@coursebook{#1}}
+\newcommand{\setauthorname}[1]{\def\@authorname{#1}}
+\newcommand{\setauthoremail}[1]{\def\@authoremail{#1}}
+\newcommand{\setauthorgithub}[1]{\def\@authorgithub{#1}}
+\newcommand{\setcoverphoto}[1]{\def\@coverphoto{#1}}
+
+\newcommand{\makecustomcover}{
+    \begin{titlepage}
+        \centering
+        \vspace*{1.5cm}
+
+        {\scshape\Large \textbf{\@universityname} \par}
+        \vspace{1.5cm}
+
+        {\Huge\bfseries \@coursename \par}
+        \vspace{0.5cm}
+
+        {\Large\itshape libro del corso: \\ \@coursebook \par}
+        \vspace{2.5cm}
+
+        \ifx\@coverphoto\empty
+            \rule{0.65\textwidth}{0.35\textwidth} \par
+        \else
+            \begin{tikzpicture}
+                \clip (0,0) rectangle (0.65\textwidth, 0.35\textwidth);
+                
+                \node[anchor=center, inner sep=0pt] at (0.325\textwidth, 0.175\textwidth) {
+                    \includegraphics[width=0.65\textwidth]{\@coverphoto}
+                };
+            \end{tikzpicture} \par
+        \fi
+        \vspace{2.5cm}
+
+        {\Large \textbf{\@authorname} \par}
+        \vspace{0.5cm}
+        {\large \today \par}
+
+        \vfill
+
+        \begin{flushright}
+            \small
+            \href{mailto:\@authoremail}{\faEnvelope\ \@authoremail} \\
+            \vspace{0.15cm}
+            \href{https://github.com/\@authorgithub}{\faGithub\ github.com/\@authorgithub}
+        \end{flushright}
+        
+        \vspace*{-1.5cm}
+    \end{titlepage}
+}

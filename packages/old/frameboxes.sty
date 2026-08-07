@@ -1,0 +1,120 @@
+\ProvidesPackage{frameboxes}
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins,hooks} 
+\usepackage{xparse}
+
+% custom colors.sty package ! needed 4 colors !!
+\usepackage{colors}
+
+\newcounter{globaldefcounter} 
+\newcounter{thmcounter} 
+
+\tcbset{
+    % primary base style
+  boxstyle/.style n args={2}{ % #1=bg color, #2=title+border color
+    enhanced,
+    breakable,
+    parbox=false,
+    colback = #1,
+    frame hidden,
+    boxrule = 0sp, % main frame is hidden
+    borderline west = {2pt}{0pt}{#2}, % left border, 2px
+    sharp corners, % square !
+    detach title,
+    before upper = \tcbtitle\par\smallskip, % title is inside box with small space
+    coltitle = #2,
+    fonttitle = {\sffamily\large}, % sans-serif
+    segmentation style={solid, #2},
+  },
+  claimstyle/.style n args={2}{
+    boxstyle={#1}{#2}, 
+    description font = \bfseries,
+  },
+  thmpropstyle/.style={claimstyle={DeepGreenLight}{DeepGreen}} % they are both green
+}
+
+\newtcbtheorem[use counter=globaldefcounter]{defframe}{Def.} % custom counter to be safe
+{ % style
+  claimstyle={RedPurpleLight}{RedPurple}
+}{def}
+
+\newtcbtheorem{lemmaframe}{Lemma}{claimstyle={DeepBlueLight}{DeepBlue}}{lemma}
+\newtcbtheorem[use counter=thmcounter]{thmframe}{Thm.}{thmpropstyle}{thm}
+\newtcbtheorem{propframe}{Prop.}{thmpropstyle}{prop}
+
+% title is "proof"
+\newtcolorbox{proofframe}[1][]{
+  boxstyle={DeepRedLight}{DeepRed}, 
+  title=proof,
+  #1
+}
+
+\newtcolorbox{pframe}[1][]{
+  boxstyle={DeepRedLight}{DeepRed}, 
+  notitle,
+  #1
+}
+
+\newtcolorbox{gframe}[2][]{
+  boxstyle={GreyLight}{DarkGrey}, 
+  description font = \mdseries, 
+  title=#2,
+  #1
+}
+
+
+
+\tcbset{
+  mydynamicbox/.style 2 args={ % #1 = bg color, #2 = title/side color
+    enhanced,
+    breakable,
+    parbox=false,
+    colback=#1,
+    frame hidden,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{#2},
+    sharp corners,
+    detach title,
+    before upper=\tcbtitle\par\smallskip,
+    coltitle=#2,
+    fonttitle={\sffamily\large},
+    separator sign none,
+    segmentation style={solid,#2},
+  }
+}
+
+% syntax is : \begin{cdefbox}{<bg color>}{<title/side color>}{<custom title>}
+
+\NewDocumentEnvironment{cdefframe}{mmm} 
+{%
+  \refstepcounter{globaldefcounter}
+  \begin{tcolorbox}[mydynamicbox={#1}{#2}, title={Def.~\theglobaldefcounter: \textbf{#3}}]
+}%
+{%
+  \end{tcolorbox}
+}
+
+\NewDocumentEnvironment{cframe}{mmm} % 3 args: bg color, title color, title
+{%
+  \begin{tcolorbox}[
+    mydynamicbox={#1}{#2},
+    title={#3},
+    fonttitle={\bfseries\sffamily\large} % make title bold
+  ]
+}%
+{%
+  \end{tcolorbox}
+}
+
+\NewDocumentEnvironment{corframe}{m} 
+{%
+  \begin{tcolorbox}[mydynamicbox={DeepGreenLight}{DeepGreen}, 
+    title={Corollary for Thm.~\thethmcounter: \textbf{#1}}, 
+    fonttitle={\bfseries\sffamily\large}]%
+}%
+{%
+  \end{tcolorbox}%
+}

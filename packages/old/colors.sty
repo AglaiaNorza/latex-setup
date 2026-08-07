@@ -1,0 +1,44 @@
+\ProvidesPackage{squareboxes}
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+%%%% colors %%%%
+\definecolor{DeepBlue}{HTML}{0B3C4D}
+\definecolor{DeepBlueLight}{HTML}{F3FBFC}
+
+\definecolor{DeepGreen}{HTML}{0B4D2E}
+\definecolor{DeepGreenLight}{HTML}{F3FCF6}
+
+\definecolor{DarkGrey}{HTML}{696868}
+\definecolor{GreyLight}{HTML}{F3F1F1}
+
+\definecolor{DeepRed}{HTML}{720026}
+\definecolor{DeepRedLight}{HTML}{FDF6F8}
+
+\definecolor{PinkPurple}{HTML}{8C1359}
+\definecolor{PinkPurpleLight}{HTML}{FDF5F9}
+
+\definecolor{RedPurple}{HTML}{6C1E63}
+\definecolor{RedPurpleLight}{HTML}{FDF8FB}
+
+\definecolor{DeepGrey}{HTML}{4E4A4A}
+\definecolor{DeepGreyLight}{HTML}{F6F5F5}
+
+\definecolor{BlueGray}{HTML}{36454F}
+\definecolor{BlueGrayLight}{HTML}{F4F7F9}
+
+\definecolor{DeepTeal}{HTML}{004D47}
+\definecolor{DeepTealLight}{HTML}{F2FAF9}
+
+\definecolor{BrightGreen}{HTML}{0E7C4B}
+\definecolor{BrightGreenLight}{HTML}{EFFBF6}
+
+% used for theorems
+\tcbset{
+  RedPurpleColors/.style={colback=RedPurpleLight, colframe=RedPurple, colbacktitle=RedPurple},
+  DeepBlueColors/.style={colback=DeepBlueLight, colframe=DeepBlue, colbacktitle=DeepBlue},
+  DeepGreenColors/.style={colback=DeepGreenLight, colframe=DeepGreen, colbacktitle=DeepGreen},
+  DarkGreyColors/.style={colback=GreyLight, colframe=DarkGrey, colbacktitle=DarkGrey},
+  DeepRedColors/.style={colback=DeepRedLight, colframe=DeepRed, colbacktitle=DeepRed}
+}
