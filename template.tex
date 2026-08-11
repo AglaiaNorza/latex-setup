@@ -1,47 +1,40 @@
 %! TEX program = xelatex
 \documentclass[a4paper,12pt]{report}
 
+\usepackage{packages/packs}
 \usepackage{packages/mainstyle}
 \usepackage{packages/colors}
-\usepackage{packages/title}
-\usepackage{packages/packs}
 \usepackage{packages/macros}
 \usepackage{packages/title}
+\usepackage{packages/simpletitles}
 
 \usepackage{packages/frameboxes}
 \usepackage{packages/noteboxes}
 \usepackage{packages/roundboxes}
 
-\setcoursename{Course Name}
-\setcoursebook{Book Title, \textit{Author Name}}
-\setauthorname{Author Name}
-\setauthoremail{person@gmail.com}
-\setauthorgithub{UserName}
+\setcoursename{LaTeX Style Explanation}
+\setcoursebook{uuuuhhhhh}
+\setauthorname{aglaia norza}
+\setauthoremail{norzaglaia@gmail.com}
+\setauthorgithub{AglaiaNorza}
+\setuniversity{uuuuuhhh}
 
 \begin{document}
+
+\makecustomcover
 
 \tableofcontents
 
 \chapter{General}
 
-\section{Document style and layout (\texttt{mainstyle.sty})}
+The \texttt{mainstyle.sty} package configures the overall visual appearance (fonts, margins, sectioning etc.)
 
-Configures the overall visual appearance, including fonts, margins, sectioning etc.
+I'm currently trying the IBM Plex Sans font (for a modern vibe - to have a different vibe, IBM Plex Serif is also nice) for text and STIX Two Math for mathematics.
 
-I use A4 paper with the XITS font. Left and Right margins are 2cm, top and bottom margins are 2.5cm.
+\section{Colors (\texttt{colors.sty})}
+Colors are named by their purpose. The box packages automatically mix primary colors with white for the lighter backgrounds.
 
-\begin{itemize}
-    \item chapter style: \texttt{Bjornstrup} style from \texttt{fncychap}.
-    \item section numbering: Section numbering depth is set to 3, including \texttt{\textbackslash subsection} and \texttt{\textbackslash subsubsection}.
-    \item title formatting: all section titles are bold (\texttt{\textbackslash section} is \texttt{\textbackslash Large}, \texttt{\textbackslash subsection} is \texttt{\textbackslash large}) and include a period after the number (e.g., \textbf{1.1. Title}).
-    \item Header/Footer Style:  \texttt{fancyhdr} with 0.4pt rules for both header and footer. Right header displays the current section name (\texttt{\textbackslash rightmark}), left footer displays the current chapter name (\texttt{\textbackslash leftmark}), right footer displays the page number (\texttt{\textbackslash thepage}).
-    \item \texttt{enumerate} list environment uses labels in (1), (2), (3)... format
-\end{itemize}
-
-\section{Custom colors (\texttt{colors.sty})}
-``Semantic'' palette of colors (named by their purpose). The box packages automatically mix these primary colors with white to generate the lighter backgrounds.
-
-The core semantic colors defined are:
+The core colors are:
 \begin{itemize}
     \item \texttt{ColorDef}: used for definitions (Purple).
     \item \texttt{ColorLemma}: used for lemmas (Blue).
@@ -52,7 +45,7 @@ The core semantic colors defined are:
 \end{itemize}
 Additional colors include \texttt{ColorEx} (examples), \texttt{ColorNote} (remarks), \texttt{ColorWarn} (warnings), and \texttt{ColorQues} (questions/exercises).
 
-\section{Custom macros (\texttt{macros.sty})}
+\section{Macros (\texttt{macros.sty})}
 
 This package defines commands for specific symbols and mathematical sets. There aren't very many, as i am still defining which ones i need (and most of the heavy lifting is done by my nvim config).
 
@@ -68,13 +61,20 @@ Pretty basic:
 
 The \texttt{packs.sty} file includes the core packages i use in my notes (mainly maths and formatting packages).
 
-\section{Title page (\texttt{title.sty})}
-Title page is always a work in progress. Right now, it's generic, but i'm still looking for a better one.
-(the current one is on the last page of this pdf)
+\section{Title pages}
+\texttt{title.sty, simpletitles.sty, title-centered.sty}
+
+Title page is always a work in progress. My new ``main'' one (\texttt{title.sty}) (the cover of this document) is pretty slick, but i also have simpler ones for quick notes, and my old one (centered).
+
+Examples follow.
+
+\makeinpagetitle{title}{subtitle}{more}
+
+\makefullpagetitle{title}{subtitle}{more}{even more}
 
 \chapter{Boxes}
 
-All of the boxes in my template are very similar (the designs are different, but the box types are the same). That is because they are iterations of me deciding which style i like best. Right now, I only use ``frame boxes'', but at different points i used both ``round'' and ``note'' boxes, too.
+All of the boxes in my template are very similar (the designs are different, but the box types are the same). That is because they are iterations of me deciding which style i like best. Right now, I only use ``frame boxes'', but at different points i used both ``round'' and ``note'' boxes, too (note boxes are kinda ugly ngl).
 
 
 \section{Frame Boxes}
@@ -259,6 +259,5 @@ The boxes defined in \texttt{noteboxes.sty} are:
         \end{pnote}
 \end{itemize}
 
-\makecustomcover
 
 \end{document}

@@ -4,86 +4,129 @@
 % font settings
 % ===================================
 \RequirePackage{fontspec}
-\setmainfont{XITS} % using xits font
-%\setmainfont{IBM Plex Mono}
+\setsansfont{IBM Plex Sans}
+% for a less modern vibe:
+%\setmainfont{IBM Plex Serif}
+\setmainfont{IBM Plex Sans}
+
+\RequirePackage{unicode-math}
+\setmathfont{STIXTwoMath-Regular.otf}
 
 % ===================================
-% page layout and dimensions
+% page layout
 % ===================================
 \usepackage{geometry}
 
-% margins
 \geometry{a4paper, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
 
-% paragraph spacing
 \setlength{\parskip}{6pt}
 \setlength{\parindent}{0pt}
 
-% math font sizes
 \DeclareMathSizes{11}{13}{9}{9}
 
 % ===================================
-% list environments
+% lists
 % ===================================
 \usepackage{enumitem}
 
 \setlist[itemize]{topsep=0pt, itemsep=3pt}
 \setlist[enumerate]{topsep=0pt, itemsep=3pt}
 
-\setenumerate{label=(\arabic*)} % enumerate labels are (1), (2), (3)...
+% circle:
+%\setenumerate{label=(\arabic*)}
+% square:
+%\setenumerate{label=\fbox{\arabic*}}
+\setenumerate{label=\textcolor{chaptergray}{\sffamily\arabic* |}}
 \def\labelitemi{\scalebox{0.5}{$\blacksquare$}}
 
 % ===================================
-% title and sections
-% ===================================
-
-% chapter title style
-\@ifundefined{chapter}{}{
-  \usepackage[Bjornstrup]{fncychap}
-}
-
-\setcounter{secnumdepth}{3} % subsections, too
-
-% ===================================
-% title and sections
+% sections
 % ===================================
 \usepackage{titlesec}
+\usepackage{xcolor}
+
+\definecolor{chaptergray}{gray}{0.6}
+
+\@ifundefined{chapter}{}{
+  \titleformat{\chapter}[display]
+    {\normalfont\sffamily\raggedleft}
+    {\textcolor{chaptergray}{\Large\bfseries CHAPTER \thechapter}}
+    {5pt}
+    {\Huge\bfseries}[\vspace{1ex}\color{chaptergray}\titlerule]
+    
+  \titlespacing*{\chapter}{0pt}{10pt}{40pt}
+}
+
+\setcounter{secnumdepth}{3}
 
 \titleformat{\section}
-  {\normalfont\Large\bfseries\sffamily} 
-  {\thesection}                                       
-  {1em}                                               % spazio tra numero e titolo
-  {}                                                  
+  {\normalfont\Large\bfseries\sffamily}
+  {\textcolor{chaptergray}{\thesection \hspace{6pt} \rule[-2pt]{1.5pt}{14pt} \hspace{6pt}}}
+  {0pt}
+  {}
 
-\titlespacing*{\section}{0pt}{10pt}{2pt} 
+\titlespacing*{\section}{0pt}{14pt}{6pt}
 
 \titleformat{\subsection}
   {\normalfont\large\bfseries\sffamily}
-  {\thesubsection}
-  {0.5em}
+  {\textcolor{chaptergray}{\thesubsection \hspace{4pt} \rule[-1.5pt]{1.2pt}{11pt} \hspace{4pt}}}
+  {0pt}
   {}
 
-\titlespacing*{\subsection}{0pt}{10pt}{8pt}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
 
 \titleformat{\subsubsection}
   {\normalfont\normalsize\bfseries\sffamily}
-  {\thesubsubsection}
-  {0.5em}
+  {\textcolor{chaptergray}{\thesubsubsection}}
+  {0.75em}
   {}
 
 \titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
 
+\titleformat{name=\section,numberless}
+  {\normalfont\Large\bfseries\sffamily}
+  {\textcolor{chaptergray}{\rule[-2pt]{1.5pt}{14pt} \hspace{6pt}}}
+  {0pt}
+  {}
+
+\titleformat{name=\subsection,numberless}
+  {\normalfont\large\bfseries\sffamily}
+  {\textcolor{chaptergray}{\rule[-1.5pt]{1.2pt}{11pt} \hspace{4pt}}}
+  {0pt}
+  {}
+
+\titleformat{name=\subsubsection,numberless}
+  {\normalfont\normalsize\bfseries\sffamily}
+  {}
+  {0pt}
+  {}
+
 % ===================================
-% header and footer 
+% table of contents
+% ===================================
+\usepackage{tocloft}
+
+\renewcommand{\cfttoctitlefont}{\normalfont\Huge\bfseries\sffamily}
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsecpagefont}{\sffamily}
+
+\@ifundefined{chapter}{}{
+  \renewcommand{\cftchapfont}{\sffamily\bfseries}
+  \renewcommand{\cftchappagefont}{\sffamily\bfseries}
+}
+
+% ===================================
+% header / footer 
 % ===================================
 \RequirePackage{fancyhdr}
 
 \pagestyle{fancy}
-\fancyhf{} % clear header and footer
-\fancyhead[R]{\nouppercase{\rightmark}} % right header: section name
+\fancyhf{}
 
-\fancyfoot[L]{\nouppercase{\leftmark}} % left footer: chapter name
-\fancyfoot[R]{\thepage} % right footer: page number
+\fancyhead[R]{\sffamily\nouppercase{\rightmark}} % right header: section name
+
+\fancyfoot[L]{\sffamily\nouppercase{\leftmark}} % left footer: chapter name
+\fancyfoot[R]{\sffamily\thepage} % right footer: page number
 
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -97,7 +140,3 @@
 \renewcommand{\sectionmark}[1]{%
   \markright{\thesection\quad #1}%
 }
-
-\newfontfamily\titlefont{IBM Plex Sans} 
-
-

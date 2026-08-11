@@ -1,18 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{title}
 
+% --- required packages ---
 \RequirePackage{graphicx}
 \RequirePackage{fontawesome5}
 \RequirePackage{tikz}
-\RequirePackage{xcolor}
 
-\def\@universityname{TU Wien}
+\def\@universityname{Sapienza Università di Roma}
 \def\@coursename{Course Title}
 \def\@coursebook{Course Material}
 \def\@authorname{Author Name}
 \def\@authoremail{email@example.com}
 \def\@authorgithub{username}
-\def\@coverphoto{}
+\def\@coverphoto{} % empty by default
 
 \newcommand{\setuniversity}[1]{\def\@universityname{#1}}
 \newcommand{\setcoursename}[1]{\def\@coursename{#1}}
@@ -22,26 +22,22 @@
 \newcommand{\setauthorgithub}[1]{\def\@authorgithub{#1}}
 \newcommand{\setcoverphoto}[1]{\def\@coverphoto{#1}}
 
-\newcommand{\makecustomcover}{
+\newcommand{\makecenteredtitle}{
     \begin{titlepage}
-        \sffamily
-        \raggedleft
-        \vspace*{4cm}
+        \centering
+        \vspace*{1.5cm}
 
-        {\Large\textcolor{chaptergray}{\scshape\bfseries \@universityname} \par}
-        \vspace{-0.5em}
+        {\scshape\Large \textbf{\@universityname} \par}
+        \vspace{1.5cm}
 
-        {\fontsize{40}{48}\selectfont\bfseries \@coursename \par}
-        \vspace{1ex}
-        
-        {\color{chaptergray}\rule{\textwidth}{1.5pt} \par}
-        \vspace{2ex}
+        {\Huge\bfseries \@coursename \par}
+        \vspace{0.5cm}
 
-        {\Large\textcolor{chaptergray}{\itshape course material: \@coursebook} \par}
-        \vspace{3cm}
+        {\Large\itshape libro del corso: \\ \@coursebook \par}
+        \vspace{2.5cm}
 
         \ifx\@coverphoto\empty
-            \textcolor{chaptergray}{\rule{0.65\textwidth}{0.35\textwidth}} \par
+            \rule{0.65\textwidth}{0.35\textwidth} \par
         \else
             \begin{tikzpicture}
                 \clip (0,0) rectangle (0.65\textwidth, 0.35\textwidth);
@@ -51,20 +47,21 @@
                 };
             \end{tikzpicture} \par
         \fi
-        \vspace{3cm}
+        \vspace{2.5cm}
 
-        {\Large\bfseries \@authorname \par}
-        \vspace{0.25cm}
-        {\large\textcolor{chaptergray}{\today} \par}
+        {\Large \textbf{\@authorname} \par}
+        \vspace{0.5cm}
+        {\large \today \par}
 
         \vfill
 
-        {\small\textcolor{chaptergray}{
+        \begin{flushright}
+            \small
             \href{mailto:\@authoremail}{\faEnvelope\ \@authoremail} \\
             \vspace{0.15cm}
             \href{https://github.com/\@authorgithub}{\faGithub\ github.com/\@authorgithub}
-        }}
+        \end{flushright}
         
-        \vspace*{-1cm}
+        \vspace*{-1.5cm}
     \end{titlepage}
 }
