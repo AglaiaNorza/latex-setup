@@ -10,6 +10,12 @@ Its usage and details are shown [here](https://raw.githubusercontent.com/AglaiaN
 
 The `empty-` files are starter documents/"templates".
 
+---
+
+| Cover Page | Callouts | Generic |
+| :---: | :---: | :---: |
+| <img src="./readme/example-cover.png" width="250" alt="cover page" /> | <img src="./readme/example-boxes.png" width="250" alt="boxes and proofs" /> | <img src="./readme/example-text.png" width="250" alt="code listings and text" /> |
+
 --- 
 
 ## Neovim Setup (`*.lua` files)
