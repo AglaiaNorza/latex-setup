@@ -14,6 +14,11 @@
 \def\@authorgithub{username}
 \def\@coverphoto{} % empty by default
 
+\def\@coverwidth{0.65\textwidth}
+\def\@coverheight{0.35\textwidth}
+\def\@beforespace{2.5cm}
+\def\@afterspace{2.5cm}
+
 \newcommand{\setuniversity}[1]{\def\@universityname{#1}}
 \newcommand{\setcoursename}[1]{\def\@coursename{#1}}
 \newcommand{\setcoursebook}[1]{\def\@coursebook{#1}}
@@ -21,6 +26,11 @@
 \newcommand{\setauthoremail}[1]{\def\@authoremail{#1}}
 \newcommand{\setauthorgithub}[1]{\def\@authorgithub{#1}}
 \newcommand{\setcoverphoto}[1]{\def\@coverphoto{#1}}
+
+\newcommand{\setcoverwidth}[1]{\def\@coverwidth{#1}}
+\newcommand{\setcoverheight}[1]{\def\@coverheight{#1}}
+\newcommand{\setbeforespace}[1]{\def\@beforespace{#1}}
+\newcommand{\setafterspace}[1]{\def\@afterspace{#1}}
 
 \newcommand{\makecenteredtitle}{
     \begin{titlepage}
@@ -33,21 +43,24 @@
         {\Huge\bfseries \@coursename \par}
         \vspace{0.5cm}
 
-        {\Large\itshape libro del corso: \\ \@coursebook \par}
-        \vspace{2.5cm}
+        {\Large\itshape course material: \\ \@coursebook \par}
+        
+        \vspace{\@beforespace}
 
         \ifx\@coverphoto\empty
-            \rule{0.65\textwidth}{0.35\textwidth} \par
+            \rule{\@coverwidth}{\@coverheight} \par
         \else
             \begin{tikzpicture}
-                \clip (0,0) rectangle (0.65\textwidth, 0.35\textwidth);
+                \useasboundingbox (0,0) rectangle (\@coverwidth, \@coverheight);
+                \clip (0,0) rectangle (\@coverwidth, \@coverheight);
                 
-                \node[anchor=center, inner sep=0pt] at (0.325\textwidth, 0.175\textwidth) {
-                    \includegraphics[width=0.65\textwidth]{\@coverphoto}
+                \node[anchor=center, inner sep=0pt] at (current bounding box.center) {
+                    \includegraphics[width=\@coverwidth]{\@coverphoto}
                 };
             \end{tikzpicture} \par
         \fi
-        \vspace{2.5cm}
+        
+        \vspace{\@afterspace}
 
         {\Large \textbf{\@authorname} \par}
         \vspace{0.5cm}
