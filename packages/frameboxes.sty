@@ -37,8 +37,10 @@
 \newtcbtheorem{lemmaframe}{Lemma}
   {claimstyle={ColorLemma}}{lemma}
 
-\newtcbtheorem[use counter=thmcounter]{thmframe}{Thm.}
-  {claimstyle={ColorThm}}{thm}
+\newtcbtheorem[use counter=thmcounter]{thmframe}{Thm.}{
+  claimstyle={ColorThm},
+  description delimiters={[}{]}
+}{thm}
 
 \NewDocumentEnvironment{corframe}{m} 
 {%
