@@ -41,18 +41,36 @@ ls.add_snippets("tex", {
         }),
         { condition = in_mathzone }
     ),
+
+    s(
+        { trig = "(%a)(%d)", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+        fmt("{}_{}", {
+            f(function(_, snip) return snip.captures[1] end),
+            f(function(_, snip) return snip.captures[2] end),
+        }),
+        { condition = in_mathzone }
+    ),
+
+
 })
 
 -- dynamic fraction (autosnippet)
 ls.add_snippets("tex", {
-    s(
+s(
         { trig = "([^%s%$]+)/", regTrig = true, trigEngine = "pattern", snippetType = "autosnippet" },
         fmt("\\frac{{{}}}{{{}}}", {
             f(function(_, snip) return snip.captures[1] end),
             i(1)
         }),
         { condition = in_mathzone }
-    )
+    ),
+
+s(
+        { trig = "sq", snippetType = "autosnippet", wordTrig = true },
+        fmt("\\sqrt{{{}}}{}", { i(1), i(0) }),
+        { condition = in_mathzone }
+    ),
+
 })
 
 -- math & logic (autosnippets in mathzone)
@@ -114,7 +132,7 @@ ls.add_snippets("tex", {
 -- equations
 ls.add_snippets("tex", {
     -- align (autosnippet)
-    s({ trig = "ali", snippetType = "autosnippet" }, fmt([[
+    s({ trig = "ali", snippetType = "autosnippet", wordTrig=true}, fmt([[
         \begin{{align*}}
             {} & {} \\\\
             {}
@@ -208,73 +226,143 @@ ls.add_snippets("tex", {
 
 -- my environments
 ls.add_snippets("tex", {
-    s("beg", fmt([[
+s(
+    { trig = "bbeg", snippetType = "autosnippet", wordTrig = true },
+    fmt(
+        [[
         \begin{{{}}}
             {}
         \end{{{}}}
-        ]], { i(1), i(0), rep(1) })),
+        {}
+        ]],
+        {
+            i(1, "environment"),
+            i(2),
+            rep(1),
+            i(0),
+        }
+    )
+),
 
-    s("def", fmt([[
-        \begin{{defframe}}{{{}}}{{}}
+ s(
+        { trig = "ddef", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{defframe}}{{{}}}{{}}
+                {}
+            \end{{defframe}}
             {}
-        \end{{defframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("note", fmt([[
-        \begin{{gframe}}{{{}}}
+    s(
+        { trig = "tthm", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{thmframe}}{{{}}}{{}}
+                {}
+            \end{{thmframe}}
             {}
-        \end{{gframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("proof", fmt([[
-        \begin{{proofframe}}{{{}}}{{}}
+    s(
+        { trig = "llemma", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{lemmaframe}}{{{}}}{{}}
+                {}
+            \end{{lemmaframe}}
             {}
-        \end{{proofframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("thm", fmt([[
-        \begin{{thmframe}}{{{}}}{{}}
+    s(
+        { trig = "pprop", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{propframe}}{{{}}}{{}}
+                {}
+            \end{{propframe}}
             {}
-        \end{{thmframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("lemma", fmt([[
-        \begin{{lemmaframe}}{{{}}}{{}}
+    s(
+        { trig = "pproof", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{proofframe}}{{{}}}{{}}
+                {}
+            \end{{proofframe}}
             {}
-        \end{{lemmaframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("prop", fmt([[
-        \begin{{propframe}}{{{}}}{{}}
+    s(
+        { trig = "pf", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{pframe}}
+                {}
+            \end{{pframe}}
             {}
-        \end{{propframe}}
-        ]], { i(1), i(0) })),
+            ]],
+            { i(1), i(0) }
+        )
+    ),
 
-    s("pf", fmt([[
-        \begin{{pframe}}
+    s(
+        { trig = "ccf", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{cframe}}{{{}}}{{{}}}{{{}}}
+                {}
+            \end{{cframe}}
             {}
-        \end{{pframe}}
-        ]], { i(0) })),
+            ]],
+            { i(1, "bg_color"), i(2, "title_color"), i(3, "Title"), i(4), i(0) }
+        )
+    ),
 
-    s("cdef", fmt([[
-        \begin{{cdefframe}}{{{}}}{{{}}}{{{}}}
+    s(
+        { trig = "ccor", snippetType = "autosnippet", wordTrig = true },
+        fmt(
+            [[
+            \begin{{corframe}}{{{}}}
+                {}
+            \end{{corframe}}
             {}
-        \end{{cdefframe}}
-        ]], { i(1, "bg_color"), i(2, "title_color"), i(3, "title"), i(0) })),
+            ]],
+            { i(1, "Title"), i(2), i(0) }
+        )
+    ),
 
-    s("cf", fmt([[
-        \begin{{cframe}}{{{}}}{{{}}}{{{}}}
-            {}
-        \end{{cframe}}
-        ]], { i(1, "bg_color"), i(2, "title_color"), i(3, "title"), i(0) })),
 
-    s("cor", fmt([[
-        \begin{{corframe}}{{{}}}
-            {}
-        \end{{corframe}}
-        ]], { i(1, "title"), i(0) })),
-    s("bd", { t("\\textbf{"), i(1), t("}") }),
-    s("it", { t("\\textit{"), i(1), t("}") }),
+s(
+            { trig = "tbb", snippetType = "autosnippet", wordTrig = true },
+            fmt("\\textbf{{{}}}{}", { i(1), i(0) })
+        ),
+
+        s(
+            { trig = "ttit", snippetType = "autosnippet", wordTrig = true },
+            fmt("\\textit{{{}}}{}", { i(1), i(0) })
+        ),
+
+        s(
+            { trig = "ttt", snippetType = "autosnippet", wordTrig = true },
+            fmt("\\texttt{{{}}}{}", { i(1), i(0) })
+        ),
 
     s({ trig = "mk", snippetType = "autosnippet" }, { t("$"), i(1), t("$") }),
     s({ trig = "dm", snippetType = "autosnippet" }, { t("$$ "), i(1), t(" $$") }),
