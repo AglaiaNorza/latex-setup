@@ -277,7 +277,7 @@ ls.add_snippets("tex", {
     s("it", { t("\\textit{"), i(1), t("}") }),
 
     s({ trig = "mk", snippetType = "autosnippet" }, { t("$"), i(1), t("$") }),
-    s({ trig = "dm", snippetType = "autosnippet" }, { t("\\[ "), i(1), t(" \\]") }),
+    s({ trig = "dm", snippetType = "autosnippet" }, { t("$$ "), i(1), t(" $$") }),
 })
 
 
